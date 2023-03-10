@@ -45,7 +45,22 @@ with using Python and Selenium.
 > **III.** Choose *"Word File.doc"*
 > > **Result** : Success message is shown with text "You have selected :wordFile"
 
+## Launch
+
+### Launnch in Chrome
+```
+pytest -v DemoQA_test.py
+or
+pytest -v --browser_name chrome DemoQA_test.py
+```
+### Launch in FireFox
+```
+pytest -v --browser_name firefox DemoQA_test.py
+```
+
 ## Result
 
-All tests are passed. Average run length of test is 20 seconds,
-the longest action is installing WebDriver nearly 10-15 seconds.
+All tests are passed. Average run length of test is 15 seconds with using Chrome,
+the longest action is installing WebDriver nearly 6-10 seconds.
+The length of test is 10 seconds with using Firefox.
+
