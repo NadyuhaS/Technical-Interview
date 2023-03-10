@@ -107,12 +107,10 @@ class ElementsPage(BasePage):
         if not group:
             for element in self.find_elements(*ElementsPageLocators.ELEMENT_LIST_SHOWN_SIGN):
                 self.click(self.find_element_by_text(name, *ElementsPageLocators.MENU_LIST_BTN,
-                                                     *ElementsPageLocators.MENU_LIST_BTN_HEADER,
-                                                     element=element))
+                                                     *ElementsPageLocators.MENU_LIST_BTN_HEADER, element=element))
         else:
             self.click(self.find_element_by_text(name, *ElementsPageLocators.MENU_LIST_BTN,
-                                                     *ElementsPageLocators.MENU_LIST_BTN_HEADER,
-                                                     element=group))
+                                                 *ElementsPageLocators.MENU_LIST_BTN_HEADER, element=group))
 
 
 class CheckBoxPage(BasePage):

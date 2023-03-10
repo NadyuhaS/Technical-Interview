@@ -1,10 +1,6 @@
-'''
- Пожалуйста, сделайте этот тесткейс на языке python (займет час-полтора
- https://docs.google.com/spreadsheets/d/1zyN8MSUAD5pRDfu0t1ZZzLlgwa5fPBfGTYxMiXXI2cI/edit?usp=sharing)
- используя паттерн PageObject и библиотеку webdriver manager.
-'''
 from BasePage import CheckBoxPage, ElementsPage, MainPage
 import pytest
+import config
 
 
 class TestDemoQA:
@@ -13,33 +9,29 @@ class TestDemoQA:
         self = request.cls
         self.browser = browser
         self.main_page = MainPage(self.browser)
+        self.element_page = ElementsPage(self.browser)
         self.checkbox_page = CheckBoxPage(self.browser)
 
-    def test_open_demoqa(self):
-        self.main_page.open('https://demoqa.com/')
+    def test_main_page(self):
+        self.main_page.open(config.demo_qa_main_page)
         self.browser.set_page_load_timeout(30)
-        assert self.browser.current_url == 'https://demoqa.com/', 'Incorrect  browser link'
-
-    def test_category_cards(self):
+        assert self.browser.current_url == config.demo_qa_main_page, 'Incorrect  browser link'
         self.main_page.click_card('Elements')
         self.browser.set_page_load_timeout(30)
-        assert self.browser.current_url == 'https://demoqa.com/elements'
+        assert self.browser.current_url == config.demo_qa_elements_page
 
     def test_elements_page(self):
-        elementPage = ElementsPage(self.browser)
-        group = elementPage.show_element_list('Elements')
-        assert elementPage.is_element_list_shown('Elements')
-        elementPage.click_menu_element('Check Box')
+        # self.element_page.open(config.demo_qa_elements_page)
+        group = self.element_page.show_element_list('Elements')
+        assert self.element_page.is_element_list_shown('Elements')
+        self.element_page.click_menu_element('Check Box')
         self.browser.set_page_load_timeout(30)
-        assert self.browser.current_url == 'https://demoqa.com/checkbox'
+        assert self.browser.current_url == config.demo_qa_checkbox_page
 
     def test_checkbox_page(self):
+        # self.checkbox_page.open(config.demo_qa_checkbox_page)
         assert self.checkbox_page.expand_tree('Home') is not None, f'No tree was opened'
-
-    def test_checkbox_downloads(self):
         assert self.checkbox_page.expand_tree('Downloads') is not None, f'No tree was opened'
-
-    def test_checkbox_result(self):
         self.checkbox_page.select_checkbox('Word File.doc')
         assert self.checkbox_page.get_text_result() == 'You have selected :wordFile'
 
