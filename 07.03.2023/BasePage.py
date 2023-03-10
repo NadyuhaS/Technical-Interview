@@ -113,6 +113,7 @@ class ElementsPage(BasePage):
                                                  *ElementsPageLocators.MENU_LIST_BTN_HEADER, element=group))
 
 
+
 class CheckBoxPage(BasePage):
     def __find_tree_element(self, name) -> object:
         return self.find_element_by_text(name, *CheckBoxLocators.TREE_ELEMENT,

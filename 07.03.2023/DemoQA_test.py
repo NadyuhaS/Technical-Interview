@@ -32,6 +32,7 @@ class TestDemoQA:
         # self.checkbox_page.open(config.demo_qa_checkbox_page)
         assert self.checkbox_page.expand_tree('Home') is not None, f'No tree was opened'
         assert self.checkbox_page.expand_tree('Downloads') is not None, f'No tree was opened'
+
         self.checkbox_page.select_checkbox('Word File.doc')
         assert self.checkbox_page.get_text_result() == 'You have selected :wordFile'
 
